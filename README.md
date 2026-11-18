@@ -215,3 +215,18 @@ Leia também: `docs/MODEL_GOVERNANCE.md`.
 ---
 
 **Oculomics** · Desenvolvimento experimental de software e pesquisa em inteligência artificial, visão computacional e saúde ocular. **Não é uma ferramenta aprovada para diagnóstico.**
+
+
+## 12. Organização de atalhos no Google Drive (opcional; execução na conta autorizada)
+
+A pasta privada de categorias já foi criada no Drive e contém 13 subpastas de diagnóstico. Como o BRSET é multirrótulo, **não mova as fotos originais**: uma mesma imagem pode ter múltiplas categorias. O arquivo `scripts/drive_organize.gs` cria **atalhos** para os originais, sem duplicar seu conteúdo.
+
+Para aplicar na própria conta autorizada:
+
+1. Abra [script.google.com](https://script.google.com), crie um projeto privado e cole o conteúdo de `scripts/drive_organize.gs`.
+2. Em **Project Settings → Script properties**, registre `BRSET_CSV_ID` (ID do CSV privado no Drive), `BRSET_IMAGES_ID` (ID da pasta privada com as imagens originais) e `BRSET_DIAGNOSES_ID` (ID da pasta privada de categorias criada no Drive).
+3. Execute `organizeNextBatch` e autorize apenas as permissões necessárias. Repita a execução enquanto o registro indicar novos lotes. O script processa até 100 arquivos originais por chamada e guarda o cursor de continuação nas propriedades do projeto.
+4. Confirme manualmente uma amostra das associações de categoria com o CSV; avalie os casos não encontrados. A listagem de categorias **não** é divisão treino/teste.
+
+**Status:** pastas criadas; os milhares de atalhos ainda **não foram gerados**, pois a execução do Apps Script requer autorização na sua conta Google. Não publique IDs de pastas, credenciais ou a base restrita. Os atalhos herdam permissões dos arquivos originais; não amplie o compartilhamento das pastas de diagnóstico.
+
